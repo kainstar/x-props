@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'prettier', 'react'],
   parserOptions: {
     project: ['./tsconfig.json', './tsconfig.test.json'],
   },
@@ -10,6 +10,8 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
   ],
   rules: {
     '@typescript-eslint/no-use-before-define': 'error',
@@ -32,5 +34,7 @@ module.exports = {
         minimumDescriptionLength: 5,
       },
     ],
+
+    'react/prop-types': 'off',
   },
 };

@@ -27,7 +27,6 @@ export function xProps(options?: IXOptions) {
   function createXPropsComp<E extends keyof JSX.IntrinsicElements>(
     Comp: E
   ): React.NamedExoticComponent<Partial<JSX.IntrinsicElements[E]> & XExtendsProps>;
-  // eslint-disable-next-line @typescript-eslint/ban-types
   function createXPropsComp<P>(Comp: React.ComponentType<P> | keyof JSX.IntrinsicElements) {
     const XPropsComp = React.memo<Partial<P> & XExtendsProps>((props) => {
       const { 'x-props': xProps, ...rest } = props;
