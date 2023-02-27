@@ -1,24 +1,24 @@
 {
-  "name": "@kainstar/typescript-npm-package-template",
+  "name": "x-props",
   "version": "1.0.0",
-  "description": "A template for creating npm packages using TypeScript and VSCode",
+  "description": "A expression props evaluate component generator",
   "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
   },
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "tsup ./src/index.tsx --format=cjs,esm --dts",
     "cm": "cz",
     "clean": "rimraf lib",
     "lint": "eslint src",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kainstar/typescript-npm-package-template.git"
+    "url": "git+https://github.com/kainstar/x-props.git"
   },
   "license": "MIT",
   "author": {
@@ -40,16 +40,16 @@
     "node": ">=12.0"
   },
   "keywords": [
-    "boilerplate",
-    "template",
-    "typescript",
-    "vscode",
-    "semantic-release"
+    "expression",
+    "props",
+    "x-props",
+    "react",
+    "component"
   ],
   "bugs": {
-    "url": "https://github.com/kainstar/typescript-npm-package-template/issues"
+    "url": "https://github.com/kainstar/x-props/issues"
   },
-  "homepage": "https://github.com/kainstar/typescript-npm-package-template#readme",
+  "homepage": "https://github.com/kainstar/x-props#readme",
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
@@ -59,9 +59,14 @@
     "@semantic-release/github": "^8.0.7",
     "@semantic-release/npm": "^9.0.2",
     "@semantic-release/release-notes-generator": "^10.0.3",
+    "@testing-library/react": "^14.0.0",
     "@types/node": "^18.11.18",
+    "@types/react": "^18.0.28",
+    "@types/set-value": "^4.0.1",
+    "@types/traverse": "^0.6.32",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
+    "@vitejs/plugin-react": "^3.1.0",
     "@vitest/coverage-c8": "^0.28.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
@@ -71,13 +76,17 @@
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
     "is-ci": "^3.0.1",
+    "jsdom": "^21.1.0",
     "lint-staged": "^13.1.0",
+    "lodash.mergewith": "^4.6.2",
     "prettier": "^2.8.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rimraf": "^4.1.2",
     "semantic-release": "^20.1.0",
     "ts-node": "^10.9.1",
+    "tsup": "^6.6.3",
     "typescript": "^4.9.5",
-    "unbuild": "^1.1.1",
     "vitest": "^0.28.4"
   },
   "config": {
@@ -87,5 +96,18 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "deepmerge": "^4.3.0",
+    "set-value": "^4.1.0",
+    "traverse": "^0.6.7"
   }
 }

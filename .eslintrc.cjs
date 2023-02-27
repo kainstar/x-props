@@ -13,7 +13,7 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/no-use-before-define': 'error',
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
