@@ -10,14 +10,15 @@ specifiers:
   '@semantic-release/npm': ^9.0.2
   '@semantic-release/release-notes-generator': ^10.0.3
   '@testing-library/react': ^14.0.0
+  '@types/clone-deep': ^4.0.1
   '@types/node': ^18.11.18
   '@types/react': ^18.0.28
-  '@types/set-value': ^4.0.1
   '@types/traverse': ^0.6.32
   '@typescript-eslint/eslint-plugin': ^5.50.0
   '@typescript-eslint/parser': ^5.50.0
   '@vitejs/plugin-react': ^3.1.0
   '@vitest/coverage-c8': ^0.28.4
+  clone-deep: ^4.0.1
   commitizen: ^4.3.0
   cz-conventional-changelog: ^3.3.0
   deepmerge: ^4.3.0
@@ -37,7 +38,6 @@ specifiers:
   react-dom: ^18.2.0
   rimraf: ^4.1.2
   semantic-release: ^20.1.0
-  set-value: ^4.1.0
   traverse: ^0.6.7
   ts-node: ^10.9.1
   tsup: ^6.6.3
@@ -45,8 +45,8 @@ specifiers:
   vitest: ^0.28.4
 
 dependencies:
+  clone-deep: 4.0.1
   deepmerge: 4.3.0
-  set-value: 4.1.0
   traverse: 0.6.7
 
 devDependencies:
@@ -59,9 +59,9 @@ devDependencies:
   '@semantic-release/npm': 9.0.2_semantic-release@20.1.0
   '@semantic-release/release-notes-generator': 10.0.3_semantic-release@20.1.0
   '@testing-library/react': 14.0.0_biqbaboplfbrettd7655fr4n2y
+  '@types/clone-deep': 4.0.1
   '@types/node': 18.11.19
   '@types/react': 18.0.28
-  '@types/set-value': 4.0.1
   '@types/traverse': 0.6.32
   '@typescript-eslint/eslint-plugin': 5.51.0_b635kmla6dsb4frxfihkw4m47e
   '@typescript-eslint/parser': 5.51.0_4vsywjlpuriuw3tl5oq6zy5a64
@@ -1353,6 +1353,10 @@ packages:
     resolution: {integrity: sha512-KnRanxnpfpjUTqTCXslZSEdLfXExwgNxYPdiO2WGUj8+HDjFi8R3k5RVKPeSCzLjCcshCAtVO2QBbVuAV4kTnw==}
     dev: true
 
+  /@types/clone-deep/4.0.1:
+    resolution: {integrity: sha512-bdkCSkyVHsgl3Goe1y16T9k6JuQx7SiDREkq728QjKmTZkGJZuS8R3gGcnGzVuGBP0mssKrzM/GlMOQxtip9cg==}
+    dev: true
+
   /@types/istanbul-lib-coverage/2.0.4:
     resolution: {integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==}
     dev: true
@@ -1401,10 +1405,6 @@ packages:
 
   /@types/semver/7.3.13:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
-    dev: true
-
-  /@types/set-value/4.0.1:
-    resolution: {integrity: sha512-mP/CLy6pdrhsDVrz1+Yp5Ly6Tcel2IAEejhyI5NxY6WnBUdWN+AAfGa0HHsdgCdsPWWcd/4D5J2X2TrRYcYRag==}
     dev: true
 
   /@types/traverse/0.6.32:
@@ -2120,6 +2120,15 @@ packages:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
     dev: true
+
+  /clone-deep/4.0.1:
+    resolution: {integrity: sha512-neHB9xuzh/wk0dIHweyAXv2aPGZIVk3pLMe+/RNzINf17fe0OG96QroktYAUm7SM1PBnzTabaLboqqxDyMU+SQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      is-plain-object: 2.0.4
+      kind-of: 6.0.3
+      shallow-clone: 3.0.1
+    dev: false
 
   /clone/1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
@@ -3781,11 +3790,6 @@ packages:
     resolution: {integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==}
     dev: true
 
-  /is-primitive/3.0.1:
-    resolution: {integrity: sha512-GljRxhWvlCNRfZyORiH77FwdFwGcMO620o37EOYC0ORWdq+WYNVqW0w2Juzew4M+L81l6/QS3t5gkkihyRqv9w==}
-    engines: {node: '>=0.10.0'}
-    dev: false
-
   /is-regex/1.1.4:
     resolution: {integrity: sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==}
     engines: {node: '>= 0.4'}
@@ -4062,7 +4066,6 @@ packages:
   /kind-of/6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /levn/0.3.0:
     resolution: {integrity: sha512-0OO4y2iOHix2W6ujICbKIaEQXvFQHue65vUG3pb5EUomzPI90z9hsA1VsO/dbIIpC53J8gxM9Q4Oho0jrCM/yA==}
@@ -5510,12 +5513,11 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
-  /set-value/4.1.0:
-    resolution: {integrity: sha512-zTEg4HL0RwVrqcWs3ztF+x1vkxfm0lP+MQQFPiMJTKVceBwEV0A569Ou8l9IYQG8jOZdMVI1hGsc0tmeD2o/Lw==}
-    engines: {node: '>=11.0'}
+  /shallow-clone/3.0.1:
+    resolution: {integrity: sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==}
+    engines: {node: '>=8'}
     dependencies:
-      is-plain-object: 2.0.4
-      is-primitive: 3.0.1
+      kind-of: 6.0.3
     dev: false
 
   /shebang-command/2.0.0:

@@ -60,9 +60,9 @@
     "@semantic-release/npm": "^9.0.2",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@testing-library/react": "^14.0.0",
+    "@types/clone-deep": "^4.0.1",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.28",
-    "@types/set-value": "^4.0.1",
     "@types/traverse": "^0.6.32",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
@@ -108,8 +108,8 @@
     }
   },
   "dependencies": {
+    "clone-deep": "^4.0.1",
     "deepmerge": "^4.3.0",
-    "set-value": "^4.1.0",
     "traverse": "^0.6.7"
   }
 }

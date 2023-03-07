@@ -1,5 +1,5 @@
 import React from 'react';
-import set from 'set-value';
+import clone from 'clone-deep';
 import merge from 'deepmerge';
 import traverse from 'traverse';
 import { FunctionXEngine, IXEngine } from './x-engine.js';
@@ -30,22 +30,17 @@ export function xProps(options?: IXOptions) {
   function createXPropsComp<P>(Comp: React.ComponentType<P> | keyof JSX.IntrinsicElements) {
     const XPropsComp = React.memo<Partial<P> & XExtendsProps>((props) => {
       const { 'x-props': xProps, ...rest } = props;
-      const xValue = useXValue(props);
+      const xScopeValue = useXValue(props);
 
-      const xEvaluatedProps: Partial<P> = {};
-      traverse(xProps).forEach(function (value) {
-        const paths = this.path;
-
-        if (typeof value === 'string') {
+      const xEvaluatedProps: Partial<P> = clone(xProps) ?? {};
+      traverse(xEvaluatedProps).forEach(function (value) {
+        if (this.isLeaf && typeof value === 'string') {
           const matched = engine.match(value);
           if (matched) {
-            set(xEvaluatedProps, paths, engine.run(matched, xValue));
+            this.update(engine.run(matched, xScopeValue), true);
             return;
           }
         }
-
-        // fallback: use raw value for props
-        set(xEvaluatedProps, paths, value);
       });
 
       const realProps = propsMerge(rest, xEvaluatedProps);

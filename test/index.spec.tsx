@@ -68,7 +68,7 @@ describe('Library', () => {
     expect(result.getByTestId('x-input').getAttribute('class')).toBe('custom-className');
   });
 
-  it('nesting prop in x-props prop', () => {
+  it('nesting prop evaluate and source value is not modified', () => {
     const Input: React.FC<
       React.InputHTMLAttributes<HTMLInputElement> & {
         source: {
@@ -82,19 +82,21 @@ describe('Library', () => {
     };
     const XInput = xProps()(Input);
 
-    const result = render(
-      <XInput
-        x-props={{
-          source: {
-            className: '{{ $props["data-testid"] }}',
-            classNameArray: ['{{ $props["data-testid"] + "-1" }}', '{{ $props["data-testid"] + "-2" }}'],
-          },
-        }}
-        data-testid="x-input"
-      />
-    );
+    const source = {
+      source: {
+        className: '{{ $props["data-testid"] }}',
+        classNameArray: ['{{ $props["data-testid"] + "-1" }}', '{{ $props["data-testid"] + "-2" }}'],
+      },
+    };
+
+    const result = render(<XInput x-props={source} data-testid="x-input" />);
 
     expect(result.getByTestId('x-input').getAttribute('class')).toBe('x-input x-input-1 x-input-2');
+    expect(source.source.className).toBe('{{ $props["data-testid"] }}');
+    expect(source.source.classNameArray).toEqual([
+      '{{ $props["data-testid"] + "-1" }}',
+      '{{ $props["data-testid"] + "-2" }}',
+    ]);
   });
 
   it('replace when same prop in x-props and other props', () => {
