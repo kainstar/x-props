@@ -1,6 +1,6 @@
 {
   "name": "x-props",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A expression props evaluate component generator",
   "sideEffects": false,
   "type": "module",
