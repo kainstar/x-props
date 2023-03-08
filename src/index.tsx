@@ -20,6 +20,14 @@ export interface XExtendsProps {
   'x-props'?: any;
 }
 
+function getCompName(Comp: React.ComponentType<any> | keyof JSX.IntrinsicElements) {
+  if (typeof Comp === 'string') {
+    return Comp;
+  }
+
+  return Comp.displayName ?? Comp.name;
+}
+
 export function xProps(options?: IXOptions) {
   const { useXValue = useDefaultXValue, engine = FunctionXEngine, propsMerge = merge } = options ?? {};
 
@@ -48,7 +56,7 @@ export function xProps(options?: IXOptions) {
       return <Comp {...realProps} />;
     });
 
-    XPropsComp.displayName = `XPropsComp(${typeof Comp === 'string' ? Comp : Comp.displayName})`;
+    XPropsComp.displayName = `XPropsComp(${getCompName(Comp)})`;
     return XPropsComp;
   }
 
